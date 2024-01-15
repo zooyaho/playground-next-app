@@ -36,6 +36,7 @@ const useFormValidate = (options?: UseFormProps<FormDataType>) => {
   return useForm<FormDataType>({
     resolver: yupResolver(loginFormSchema),
     mode: 'onSubmit', // 유효성 검사 시기 설정
+    defaultValues: { id: '', pw: '' },
     ...options,
   });
 };

@@ -1,27 +1,22 @@
-interface InputPropsType {
+import { FieldValues, Path, Control } from 'react-hook-form';
+interface InputPropsType<T extends FieldValues> {
+  name: Path<T>;
+  value: any;
   type: string;
   id: string;
-  className?: string;
-  value: string;
-  setInputValue: (val: string, inputKey?: string) => void;
   placeholder?: string;
-  maxLength?: number;
+  autoComplete?: 'on' | 'off';
   tabIndex?: number;
-  $isError?: boolean;
-  autocomplete?: string;
-  disabled?: boolean;
-  setIsFocused?: (val: boolean) => void;
+  isDisabled?: boolean;
   isReadOnly?: boolean;
-  setIsReadOnly?: (val: boolean) => void;
-  onEnter?: () => void;
-  checkIsValid?: (val: string) => void;
-  inputKey?: string;
-  _onChangeModalVisible?: () => void | undefined;
+  onFocus?: () => void;
+  onBlur?: () => void;
+  rest: any;
+  // control: Control<T>;
 }
 
 interface InputStylePropsType {
-  $isError?: boolean;
-  $isFocused?: boolean;
+  $LabelRequiredColor?: string;
 }
 
 export type { InputPropsType, InputStylePropsType };

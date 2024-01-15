@@ -1,4 +1,4 @@
-import Input from '../common/inputBox/input';
+import LabelInput from '../common/inputBox/labelInput/labelInput';
 // import ControlInputText from 'component/ControlInputText';
 import { useForm } from 'react-hook-form';
 import useFormValidate from './_hooks/useFormValidate';
@@ -24,10 +24,9 @@ function PrHookFormPage() {
   // });
 
   const {
-    register,
     handleSubmit,
     formState: { errors },
-    watch,
+    control,
   } = useFormValidate();
 
   const onSubmitHandler = async (data: formDataType) => {
@@ -39,27 +38,27 @@ function PrHookFormPage() {
       <p>prHookFormPage 입니다.</p>
       <form onSubmit={handleSubmit(onSubmitHandler)}>
         {/* ID */}
-        <Input
+        <LabelInput
           name="id"
           id="loginId"
+          labelValue="아이디"
+          isLabelRequired={true}
           type="text"
           placeholder="이메일 아이디 입력"
-          hasError={!!errors.id}
-          register={register}
-          watch={watch}
+          maxLength="13"
+          // isDisabled={true}
+          control={control}
         />
-        <p className="message">{errors.id?.message}</p>
         {/* PW */}
-        <Input
+        <LabelInput
           name="pw"
           id="password"
+          labelValue="비밀번호"
           type="password"
+          maxLength="10"
           placeholder="비밀번호 입력"
-          hasError={!!errors.pw}
-          register={register}
-          watch={watch}
+          control={control}
         />
-        <p className="message">{errors.pw?.message}</p>
         <button type="submit">로그인</button>
       </form>
     </main>
