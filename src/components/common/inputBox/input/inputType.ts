@@ -1,6 +1,13 @@
-import { FieldValues, Path, Control } from 'react-hook-form';
-interface InputPropsType<T extends FieldValues> {
+import { FieldValues, Path, RefCallBack } from 'react-hook-form';
+
+interface HookFormFieldObjType<T extends FieldValues> {
+  onChange: (...event: any[]) => void;
+  disabled?: boolean | undefined;
   name: Path<T>;
+  ref: RefCallBack;
+}
+
+interface InputPropsType<T extends FieldValues> {
   value: any;
   type: string;
   id: string;
@@ -11,8 +18,7 @@ interface InputPropsType<T extends FieldValues> {
   isReadOnly?: boolean;
   onFocus?: () => void;
   onBlur?: () => void;
-  rest: any;
-  // control: Control<T>;
+  fieldAttrs?: HookFormFieldObjType<T>;
 }
 
 interface InputStylePropsType {

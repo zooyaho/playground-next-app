@@ -31,10 +31,6 @@ function LabelInput<T extends FieldValues>({
   const onFocus = () => setIsFocused(true);
   const onBlur = () => {
     setIsFocused(false);
-    /* 
-    react-hook-form의 onBlur핸들러를 호출하여 사용자가 필드에서 포커스를 벗어날 때, 
-    필드의 유효성 검사와 필드 상태를 업데이트함
-    */
     hoookFormOnBlur();
   };
 
@@ -42,29 +38,24 @@ function LabelInput<T extends FieldValues>({
     inputType === 'password' ? setInputType('text') : setInputType('password');
   };
 
-  const className = [
-    error ? 'error' : '',
-    (fieldValue && fieldValue.length > 0) || isFocused ? 'active' : '',
-  ]
-    .join(' ')
-    .trim();
-
-  // TODO. disabled에 따른 스타일 적용
   return (
     <Style.Container>
       {labelValue && (
         <Style.Label htmlFor={id}>
           {labelValue}
           {isLabelRequired && (
-            <Style.LabelRequired $LabelRequiredColor={LabelRequiredColor}>
+            <Style.LabelRequiredIcon $LabelRequiredColor={LabelRequiredColor}>
               *
-            </Style.LabelRequired>
+            </Style.LabelRequiredIcon>
           )}
         </Style.Label>
       )}
-      <Style.InputWrapper className={className}>
+      <Style.InputWrapper
+        className={`${error ? 'error' : ''} ${
+          (fieldValue && fieldValue.length > 0) || isFocused ? 'active' : ''
+        }`}
+      >
         <Input
-          name={name}
           value={fieldValue}
           type={inputType}
           id={id}
@@ -75,22 +66,24 @@ function LabelInput<T extends FieldValues>({
           isReadOnly={isReadOnly}
           onFocus={onFocus}
           onBlur={onBlur}
-          rest={rest}
+          fieldAttrs={rest}
         />
         {type === 'password' && (
-          <Style.VisibilitySwitchBtn onClick={onChangeVisibility} tabIndex={-1}>
+          <Style.VisibilitySwitchBtn
+            type="button"
+            onClick={onChangeVisibility}
+            tabIndex={-1}
+          >
             {inputType === 'text' ? (
-              // <Style.VisibilityIcon />
-              <p>hide</p>
+              <Style.VisibilityIcon />
             ) : (
-              // <Style.VisibilityOffIcon />
-              <p>show</p>
+              <Style.VisibilityOffIcon />
             )}
           </Style.VisibilitySwitchBtn>
         )}
       </Style.InputWrapper>
       <Style.InfoWrapper>
-        <Style.InfoText>
+        <Style.InfoText className={error && 'error'}>
           {error ? error.message : infoText ? infoText : ''}
         </Style.InfoText>
         {maxLength && (

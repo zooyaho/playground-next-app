@@ -1,6 +1,6 @@
 import LabelInput from '../common/inputBox/labelInput/labelInput';
 // import ControlInputText from 'component/ControlInputText';
-import { useForm } from 'react-hook-form';
+import { useForm, Form } from 'react-hook-form';
 import useFormValidate from './_hooks/useFormValidate';
 
 interface formDataType {
@@ -60,7 +60,7 @@ function PrHookFormPage() {
           control={control}
         />
         <button type="submit">로그인</button>
-      </form>
+      </ㄹ>
     </main>
   );
 }
