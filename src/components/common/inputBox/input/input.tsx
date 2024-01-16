@@ -11,11 +11,8 @@ function Input<T extends FieldValues>({
   tabIndex,
   isDisabled = false,
   isReadOnly,
-  onFocus,
-  onBlur,
-  fieldAttrs,
+  ...registerProps // 나머지 register 속성들을 여기에 포함
 }: InputPropsType<T>) {
-  // TODO. disabled에 따른 스타일 적용
   return (
     <Style.Input
       type={type}
@@ -26,9 +23,7 @@ function Input<T extends FieldValues>({
       tabIndex={tabIndex}
       disabled={isDisabled}
       readOnly={isReadOnly}
-      onFocus={onFocus}
-      onBlur={onBlur}
-      {...fieldAttrs}
+      {...registerProps} // register 속성들을 Input 요소에 전달
     />
   );
 }

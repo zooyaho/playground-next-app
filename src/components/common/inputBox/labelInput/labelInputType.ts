@@ -1,4 +1,4 @@
-import { FieldValues, Path, Control } from 'react-hook-form';
+import { FieldValues, Path, Control } from "react-hook-form";
 
 interface LabelInputPropsType<T extends FieldValues> {
   name: Path<T>;
@@ -10,11 +10,11 @@ interface LabelInputPropsType<T extends FieldValues> {
   placeholder?: string;
   infoText?: string;
   maxLength?: string;
-  autoComplete?: 'on' | 'off';
+  autoComplete?: "on" | "off";
   tabIndex?: number;
   isDisabled?: boolean;
   isReadOnly?: boolean;
-  control: Control<T>;
+  // 기타 필요한 프로퍼티들
 }
 
 interface LabelInputStylePropsType {
